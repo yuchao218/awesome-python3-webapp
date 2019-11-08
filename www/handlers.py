@@ -145,6 +145,13 @@ async def authenticate(*, email, passwd):
     sha1.update(user.id.encode('utf-8'))
     sha1.update(b':')
     sha1.update(passwd.encode('utf-8'))
+    #logging.info('user:%s id:%s passwd:%s' % (user.name, user.id, user.passwd))
+    #s1 = '%s:%s' % (user.id, '123456')    
+    #s2 = user.id.encode('utf-8')+b':'+passwd.encode('utf-8')    
+    #logging.info('s1:%s sha1:%s' % (s1, hashlib.sha1(s1.encode('utf-8')).hexdigest()))
+    #logging.info('uid:%s passwd:%s' % (user.id, passwd))
+    #logging.info('s2:%s sh1:%s' % (s2, hashlib.sha1(s2).hexdigest()))
+    #logging.info('sha1:%s' % sha1.hexdigest())
     if user.passwd != sha1.hexdigest():
         raise APIValueError('passwd', 'Invalid password.')
     # authenticate ok, set cookie:
